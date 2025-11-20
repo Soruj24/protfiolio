@@ -13,7 +13,7 @@ interface ProjectsGridProps {
   onImageClick?: (project: Project) => void;
 }
 
-const ProjectsGrid = ({ 
+const ProjectsGrid = ({
   projects,
   onFeatureClick,
   onTechClick,
@@ -21,14 +21,14 @@ const ProjectsGrid = ({
   onLiveDemoClick,
   onCodeClick,
   onProjectClick,
-  onImageClick
+  onImageClick,
 }: ProjectsGridProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
       {projects.map((project, index) => (
-        <ProjectCard 
-          key={index} 
-          project={project} 
+        <ProjectCard
+          key={index}
+          project={project}
           index={index}
           onFeatureClick={onFeatureClick}
           onTechClick={onTechClick}

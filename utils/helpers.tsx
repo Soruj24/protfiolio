@@ -1,6 +1,5 @@
+import { Project } from "@/types/project";
 import { Atom, BookOpen, Brain, Cloud, Code, Palette } from "lucide-react";
-
- 
 
 // Get category icon
 export const getCategoryIcon = (category: string) => {
@@ -21,7 +20,9 @@ export const getDifficultyColor = (difficulty: string) => {
     intermediate: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
     advanced: "bg-red-500/20 text-red-400 border-red-500/30",
   };
-  return colors[difficulty] || "bg-gray-500/20 text-gray-400 border-gray-500/30";
+  return (
+    colors[difficulty] || "bg-gray-500/20 text-gray-400 border-gray-500/30"
+  );
 };
 
 // Get category color classes
@@ -55,9 +56,9 @@ export const calculateReadTime = (content: string) => {
 
 // Generate excerpt from content
 export const generateExcerpt = (content: string, maxLength: number = 150) => {
-  const text = content.replace(/<[^>]*>/g, ''); // Remove HTML tags
+  const text = content.replace(/<[^>]*>/g, ""); // Remove HTML tags
   if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength).trim() + '...';
+  return text.substring(0, maxLength).trim() + "...";
 };
 
 // Generate table of contents from HTML content
@@ -67,22 +68,27 @@ export const generateTableOfContents = (content: string) => {
     const levelMatch = heading.match(/<h([1-3])/);
     const titleMatch = heading.match(/>(.*?)</);
     const idMatch = heading.match(/id="([^"]*)"/);
-    
+
     const level = levelMatch ? parseInt(levelMatch[1]) : 1;
     const title = titleMatch ? titleMatch[1] : `Section ${index + 1}`;
     const id = idMatch ? idMatch[1] : `section-${index + 1}`;
-    
+
     return { id, title, level };
   });
 };
 
 // Filter related posts by category and tags
-export const getRelatedPosts = (currentPost: any, allPosts: any[], limit: number = 3) => {
+export const getRelatedPosts = (
+  currentPost: { id: string; category: string; tags: string[] },
+  allPosts: Project[],
+  limit: number = 3
+) => {
   return allPosts
-    .filter(post => 
-      post.id !== currentPost.id && 
-      (post.category === currentPost.category || 
-       post.tags.some((tag: string) => currentPost.tags.includes(tag)))
+    .filter(
+      (post) =>
+        post.id !== currentPost.id &&
+        (post.category === currentPost.category ||
+          post.tags.some((tag: string) => currentPost.tags.includes(tag)))
     )
     .slice(0, limit);
 };
@@ -90,7 +96,9 @@ export const getRelatedPosts = (currentPost: any, allPosts: any[], limit: number
 // Share utilities
 export const shareOnTwitter = (url: string, title: string) => {
   window.open(
-    `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
+    `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      title
+    )}&url=${encodeURIComponent(url)}`,
     "_blank"
   );
 };
@@ -104,7 +112,9 @@ export const shareOnFacebook = (url: string) => {
 
 export const shareOnLinkedIn = (url: string) => {
   window.open(
-    `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+    `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+      url
+    )}`,
     "_blank"
   );
 };
@@ -115,7 +125,7 @@ export const copyToClipboard = async (text: string) => {
     await navigator.clipboard.writeText(text);
     return true;
   } catch (err) {
-    console.error('Failed to copy text: ', err);
+    console.error("Failed to copy text: ", err);
     return false;
   }
 };
@@ -142,9 +152,9 @@ export const formatNumber = (num: number) => {
 // Get initial from name
 export const getInitials = (name: string) => {
   return name
-    .split(' ')
-    .map(part => part.charAt(0))
-    .join('')
+    .split(" ")
+    .map((part) => part.charAt(0))
+    .join("")
     .toUpperCase()
     .slice(0, 2);
 };

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import connectDB from "@/lib/mongodb-connect";
-import Project from "@/models/Project";
+import { Project } from "@/models/Project";
 import User from "@/models/User";
 
 export async function GET() {

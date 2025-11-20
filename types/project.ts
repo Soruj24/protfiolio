@@ -23,7 +23,9 @@ export interface ProjectStats {
 export interface Project {
   // Core identification
   id: string;
+  _id: string;
   title: string;
+  images: string[];
   description: string;
   fullDescription: string;
   emoji: string;
@@ -31,40 +33,40 @@ export interface Project {
   // Media
   image: string;
   screenshots: string[];
-  
+
   // Technical details
   technologies: string[];
   features: string[];
-  category: 'ai' | 'frontend' | 'backend' | 'fullstack' | 'mobile';
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  category: "ai" | "frontend" | "backend" | "fullstack" | "mobile";
+  difficulty: "beginner" | "intermediate" | "advanced";
   architecture: string;
-  
+
   // Project management
-  status: 'completed' | 'in-progress' | 'planned';
+  status: "completed" | "in-progress" | "planned";
   duration: string;
   teamSize: string;
   featured: boolean;
-  
+
   // URLs
   githubUrl?: string;
   liveUrl?: string;
-  
+
   // Timeline
   createdAt: string;
   updatedAt: string;
   completionDate: string;
-  
+
   // Development details
   challenges: string[];
   solutions: string[];
   developmentHighlights: DevelopmentHighlight[];
   lessonsLearned: string[];
   futureImprovements: string[];
-  
+
   // Metadata
   tags: string[];
   stats: ProjectStats;
-  
+
   // SEO
   metaDescription: string;
   seoTitle: string;
@@ -72,15 +74,17 @@ export interface Project {
 }
 
 // Utility types for filtering and queries
-export type ProjectCategory = Project['category'];
-export type ProjectStatus = Project['status'];
-export type ProjectDifficulty = Project['difficulty'];
+export type ProjectCategory = Project["category"];
+export type ProjectStatus = Project["status"];
+export type ProjectDifficulty = Project["difficulty"];
 
 // Filter options interface
 export interface ProjectFilters {
-  category?: ProjectCategory | 'all';
-  status?: ProjectStatus | 'all';
-  difficulty?: ProjectDifficulty | 'all';
+  category?: ProjectCategory | "all";
+  status?: ProjectStatus | "all";
+  difficulty?: ProjectDifficulty | "all";
+  fullDescription?: string;
+  emoji?: string;
   tags?: string[];
   featured?: boolean;
 }

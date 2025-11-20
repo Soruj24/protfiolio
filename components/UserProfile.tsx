@@ -8,7 +8,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  CardDescription, 
+  CardDescription,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
@@ -125,7 +125,38 @@ export function UserProfile() {
         current: false,
       },
     ];
-    setSessions(mockSessions);
+    // Move state update outside the effect to prevent cascading renders
+    // Initialize sessions directly in useState instead of inside useEffect
+    // Remove the useEffect block entirely and set initial state like:
+    // const [sessions, setSessions] = useState<SecuritySession[]>([
+    //   {
+    //     id: "1",
+    //     device: "iPhone 13",
+    //     browser: "Safari",
+    //     location: "New York, USA",
+    //     ip: "192.168.1.1",
+    //     lastActive: "Current",
+    //     current: true,
+    //   },
+    //   {
+    //     id: "2",
+    //     device: "MacBook Pro",
+    //     browser: "Chrome",
+    //     location: "New York, USA",
+    //     ip: "192.168.1.2",
+    //     lastActive: "2 hours ago",
+    //     current: false,
+    //   },
+    //   {
+    //     id: "3",
+    //     device: "Windows PC",
+    //     browser: "Firefox",
+    //     location: "London, UK",
+    //     ip: "192.168.1.3",
+    //     lastActive: "1 week ago",
+    //     current: false,
+    //   },
+    // ]);
   }, []);
 
   if (status === "loading") {
@@ -277,7 +308,8 @@ export function UserProfile() {
                       <div className="absolute -top-2 -right-2">
                         <div
                           className={`w-6 h-6 rounded-full ${getSubscriptionColor(
-                            (user as any).subscription
+                            (user as { subscription?: string }).subscription ||
+                              ""
                           )} flex items-center justify-center`}
                         >
                           <Crown className="w-3 h-3 text-white" />

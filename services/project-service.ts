@@ -1,13 +1,13 @@
-import { Project } from "@/types";
+import { Project } from "@/types/project";
 
-const API_BASE_URL = '/api/projects';
+const API_BASE_URL = "/api/projects";
 
 export const projectService = {
   // Get all projects
   async getProjects(): Promise<Project[]> {
     const response = await fetch(API_BASE_URL);
     if (!response.ok) {
-      throw new Error('Failed to fetch projects');
+      throw new Error("Failed to fetch projects");
     }
     return response.json();
   },
@@ -16,7 +16,7 @@ export const projectService = {
   async getProject(id: string): Promise<Project> {
     const response = await fetch(`${API_BASE_URL}/${id}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch project');
+      throw new Error("Failed to fetch project");
     }
     return response.json();
   },
@@ -24,31 +24,34 @@ export const projectService = {
   // Create project
   async createProject(projectData: Project): Promise<Project> {
     const response = await fetch(API_BASE_URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(projectData),
     });
-    
+
     if (!response.ok) {
-      throw new Error('Failed to create project');
+      throw new Error("Failed to create project");
     }
     return response.json();
   },
 
   // Update project
-  async updateProject(id: string, projectData: Partial<Project>): Promise<Project> {
+  async updateProject(
+    id: string,
+    projectData: Partial<Project>
+  ): Promise<Project> {
     const response = await fetch(`${API_BASE_URL}/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(projectData),
     });
-    
+
     if (!response.ok) {
-      throw new Error('Failed to update project');
+      throw new Error("Failed to update project");
     }
     return response.json();
   },
@@ -56,11 +59,11 @@ export const projectService = {
   // Delete project
   async deleteProject(id: string): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
-    
+
     if (!response.ok) {
-      throw new Error('Failed to delete project');
+      throw new Error("Failed to delete project");
     }
   },
 };

@@ -10,6 +10,7 @@ export interface BlogPost {
     name: string;
     avatar: string;
     role: string;
+    bio?: string;
   };
   publishedAt: string;
   updatedAt: string;
@@ -34,6 +35,7 @@ export interface BlogFormData {
     name: string;
     avatar: string;
     role: string;
+    bio?: string;
   };
   publishedAt: string;
   readTime: string;
@@ -50,6 +52,7 @@ export interface Comment {
     name: string;
     avatar: string;
     role: string;
+    bio?: string;
   };
   content: string;
   createdAt: string;
