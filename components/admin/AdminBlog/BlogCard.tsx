@@ -1,7 +1,17 @@
-"use client"; 
+"use client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Edit, Trash2, Eye, EyeOff, CheckCircle2, Copy, User, Calendar, Clock } from "lucide-react";
+import {
+  Edit,
+  Trash2,
+  Eye,
+  EyeOff,
+  CheckCircle2,
+  Copy,
+  User,
+  Calendar,
+  Clock,
+} from "lucide-react";
 import { BlogPost } from "@/types/blog";
 import Image from "next/image";
 
@@ -24,7 +34,7 @@ export default function BlogCard({
   onDelete,
   onDuplicate,
   onTogglePublish,
-  onToggleFeatured
+  onToggleFeatured,
 }: BlogCardProps) {
   return (
     <div
@@ -86,9 +96,7 @@ export default function BlogCard({
             </div>
             <div className="flex items-center space-x-1">
               <Calendar className="w-3 h-3" />
-              <span>
-                {new Date(post.updatedAt).toLocaleDateString()}
-              </span>
+              <span>{new Date(post.updatedAt).toLocaleDateString()}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Clock className="w-3 h-3" />

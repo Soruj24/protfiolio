@@ -23,9 +23,9 @@ export default function RelatedPosts({ relatedPosts }: RelatedPostsProps) {
       <CardContent className="space-y-4">
         {relatedPosts.map((post) => (
           <div
-            key={post.id}
+            key={post._id}
             className="p-3 rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 hover:border-blue-500/40 hover:shadow-md transition-all duration-300 cursor-pointer"
-            onClick={() => router.push(`/blog/${post.id}`)}
+            onClick={() => router.push(`/blog/${post._id}`)}
           >
             <h4 className="font-semibold text-white text-sm line-clamp-2 mb-1">
               {post.title}
